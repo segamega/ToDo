@@ -1,56 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        T GetById(int id);
+        ValueTask<T?> GetById(int id);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        IEnumerable<T> Find(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
         void Add(T entity);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
         void AddRange(IEnumerable<T> entities);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
         void Remove(T entity);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
         void RemoveRange(IEnumerable<T> entities);
     }
 }

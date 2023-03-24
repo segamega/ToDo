@@ -1,89 +1,48 @@
-﻿using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using Domain.Interfaces;
 
 namespace Infrastructure.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        /// <summary>
-        /// 
-        /// </summary>
         protected readonly ApplicationContext _context;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
         public GenericRepository(ApplicationContext context)
         {
             _context = context;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
         public void Add(T entity)
         {
             _context.Set<T>().Add(entity);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
         public void AddRange(IEnumerable<T> entities)
         {
             _context.Set<T>().AddRange(entities);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken)
         {
-            return _context.Set<T>().Where(expression);
+            return await _context.Set<T>().Where(expression).ToListAsync(cancellationToken);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return _context.Set<T>().ToList();
+            return await _context.Set<T>().ToListAsync(cancellationToken);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public T GetById(int id)
+        public ValueTask<T?> GetById(int id)
         {
-            return _context.Set<T>().Find(id);
+            return _context.Set<T>().FindAsync(id);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
         public void RemoveRange(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
