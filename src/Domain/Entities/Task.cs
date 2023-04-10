@@ -18,7 +18,7 @@
         /// <summary>
         /// Заголовок.
         /// </summary>
-        public string? Title { get; set; }
+        public string Title { get; set; } = null!;
 
         /// <summary>
         /// Описание.
@@ -33,11 +33,16 @@
         /// <summary>
         /// Дата и время последнего редактирования заметки.
         /// </summary>
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         /// <summary>
         /// Дата и время удаления.
         /// </summary>
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
+
+        /// <summary>
+        /// Проект.
+        /// </summary>
+        public Project? Project { get; set; }
     }
 }

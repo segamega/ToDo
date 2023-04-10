@@ -13,11 +13,16 @@
         /// <summary>
         /// Наименование.
         /// </summary>
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Идентификатор родительской категории.
         /// </summary>
-        public int? ParentId { get; set; }
+        public int? ParentCategoryId { get; set; }
+
+        /// <summary>
+        /// Родительская категория.
+        /// </summary>
+        public Category? ParentCategory { get; set; }
     }
 }
