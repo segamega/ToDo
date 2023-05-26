@@ -1,6 +1,11 @@
-﻿using Domain.Interfaces;
+﻿using Application.Categories.Mappings;
+using Application.Categories.Queries.GetCategories;
+using Domain.Interfaces;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.UnitOfWorks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace WebApp.Bootstrap
 {
@@ -32,6 +37,22 @@ namespace WebApp.Bootstrap
             #endregion
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            var assemblies = new[]
+{
+                typeof(GetCategoriesRequest).GetTypeInfo().Assembly,
+                typeof(GetCategoriesRequestHandler).GetTypeInfo().Assembly,
+                typeof(GetCategoriesResponse).GetTypeInfo().Assembly
+            };
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new CategoryProfile());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
             return services;
         }

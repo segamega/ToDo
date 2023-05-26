@@ -1,5 +1,6 @@
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using WebApp.Bootstrap;
 
 namespace WebApp
