@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence
         /// <summary>
         /// Категории.
         /// </summary>
-        public DbSet<Category> Developers { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         /// <summary>
         /// Проекты.

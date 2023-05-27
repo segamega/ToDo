@@ -14,9 +14,14 @@ namespace WebApp
             // Add services to the container.
             builder.Services.UseServices();
 
-            var connection = builder.Configuration["ConnectionStrings:DefaultConnection"];
-            builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection,
-                b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+            //MS SQL
+            //var connection = builder.Configuration["ConnectionStrings:MSSQLConnection"];
+            //builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection,
+            //    b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+
+            //POSTGRES
+            var connection = builder.Configuration["ConnectionStrings:NPGConnection"];
+            builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connection));
 
             var app = builder.Build();
 
