@@ -1,8 +1,10 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.Common.Extensions;
+﻿using Application.Common.Extensions;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Categories.Queries.GetCategories
 {

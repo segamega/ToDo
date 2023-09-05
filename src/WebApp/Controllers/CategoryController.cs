@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Application.Categories.Queries.GetCategories;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebApp.Controllers
 {

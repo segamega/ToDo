@@ -30,13 +30,13 @@ namespace WebApp.Bootstrap
             services.AddSwaggerGen();
 
             #region Repositories
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddTransient<IProjectRepository, ProjectRepository>();
-            services.AddTransient<ITaskRepository, TaskRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             #endregion
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var assemblies = new[]
 {

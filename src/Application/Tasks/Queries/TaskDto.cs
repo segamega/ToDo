@@ -1,12 +1,12 @@
 ﻿using Domain.Enums;
 using System;
 
-namespace Domain.Entities
+namespace Application.Tasks.Queries
 {
     /// <summary>
     /// Задача.
     /// </summary>
-    public class Task
+    public class TaskDto
     {
         /// <summary>
         /// Идентификатор.
@@ -21,12 +21,12 @@ namespace Domain.Entities
         /// <summary>
         /// Заголовок.
         /// </summary>
-        public string Title { get; set; } = string.Empty;
+        public string? Title { get; set; }
 
         /// <summary>
         /// Описание.
         /// </summary>
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
 
         /// <summary>
         /// Дата и время создания.
@@ -52,10 +52,5 @@ namespace Domain.Entities
         /// Приоритет.
         /// </summary>
         public PriorityType PriorityType { get; set; }
-
-        /// <summary>
-        /// Проект.
-        /// </summary>
-        public Project? Project { get; set; }
     }
 }

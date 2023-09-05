@@ -1,4 +1,6 @@
-﻿namespace Domain.Interfaces
+﻿using System;
+
+namespace Domain.Interfaces
 {
     /// <summary>
     /// Интерфейс обеспечения атомарности операций.

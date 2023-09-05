@@ -1,6 +1,8 @@
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using WebApp.Bootstrap;
 
 namespace WebApp
@@ -13,11 +15,6 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.UseServices();
-
-            //MS SQL
-            //var connection = builder.Configuration["ConnectionStrings:MSSQLConnection"];
-            //builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection,
-            //    b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
 
             //POSTGRES
             var connection = builder.Configuration["ConnectionStrings:NPGConnection"];
