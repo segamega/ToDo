@@ -1,14 +1,9 @@
-﻿using Application.Categories.Queries.GetCategories;
-using Application.Common.Extensions;
+﻿using Application.Common.Extensions;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Interfaces;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -58,6 +53,45 @@ namespace Application.Tasks.Queries.GetTaskList
             if (request.Description != null)
             {
                 expr = expr.And(x => x.Description.ToUpper().Contains(request.Description.ToUpper()));
+            }
+
+            if (request.CreatedDateFrom.HasValue)
+            {
+                expr = expr.And(x => x.CreatedDate.Date >= request.CreatedDateFrom.Value.Date);
+            }
+
+            if (request.CreatedDateTo.HasValue)
+            {
+                expr = expr.And(x => x.CreatedDate.Date <= request.CreatedDateTo.Value.Date);
+            }
+
+            if (request.UpdatedDateFrom.HasValue)
+            {
+                expr = expr.And(x => x.UpdatedDate.HasValue 
+                                    && x.UpdatedDate.Value.Date >= request.UpdatedDateFrom.Value.Date);
+            }
+
+            if (request.UpdatedDateTo.HasValue)
+            {
+                expr = expr.And(x => x.UpdatedDate.HasValue
+                                    && x.UpdatedDate.Value.Date <= request.UpdatedDateTo.Value.Date);
+            }
+
+            if (request.DueDateFrom.HasValue)
+            {
+                expr = expr.And(x => x.DueDate.HasValue
+                                    && x.DueDate.Value.Date >= request.DueDateFrom.Value.Date);
+            }
+
+            if (request.DueDateTo.HasValue)
+            {
+                expr = expr.And(x => x.DueDate.HasValue
+                                    && x.DueDate.Value.Date <= request.DueDateTo.Value.Date);
+            }
+
+            if (request.PriorityType.HasValue)
+            {
+                expr = expr.And(x => x.PriorityType.Equals(request.PriorityType.Value));
             }
 
             return expr;

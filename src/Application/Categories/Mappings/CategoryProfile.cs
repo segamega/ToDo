@@ -1,4 +1,4 @@
-﻿using Application.Categories.Queries.GetCategories;
+﻿using Application.Categories.Queries.GetCategoryList;
 using AutoMapper;
 using Domain.Entities;
 

@@ -1,5 +1,5 @@
 ﻿using Application.Categories.Mappings;
-using Application.Categories.Queries.GetCategories;
+using Application.Categories.Queries.GetCategoryList;
 using Domain.Interfaces;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.UnitOfWorks;
@@ -40,9 +40,9 @@ namespace WebApp.Bootstrap
 
             var assemblies = new[]
 {
-                typeof(GetCategoriesRequest).GetTypeInfo().Assembly,
-                typeof(GetCategoriesRequestHandler).GetTypeInfo().Assembly,
-                typeof(GetCategoriesResponse).GetTypeInfo().Assembly
+                typeof(GetCategoryListRequest).GetTypeInfo().Assembly,
+                typeof(GetCategoryListRequestHandler).GetTypeInfo().Assembly,
+                typeof(GetCategoryListResponse).GetTypeInfo().Assembly
             };
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));

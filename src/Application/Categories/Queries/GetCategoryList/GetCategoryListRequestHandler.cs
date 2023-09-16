@@ -6,20 +6,20 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Categories.Queries.GetCategories
+namespace Application.Categories.Queries.GetCategoryList
 {
     /// <summary>
-    /// Обработчик запроса <see cref="GetCategoriesRequest"/>.
+    /// Обработчик запроса <see cref="GetCategoryListRequest"/>.
     /// </summary>
-    public class GetCategoriesRequestHandler : IRequestHandler<GetCategoriesRequest, GetCategoriesResponse>
+    public class GetCategoryListRequestHandler : IRequestHandler<GetCategoryListRequest, GetCategoryListResponse>
     {
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="GetCategoriesRequestHandler"/>.
+        /// Инициализирует новый экземпляр класса <see cref="GetCategoryListRequestHandler"/>.
         /// </summary>
-        public GetCategoriesRequestHandler(
+        public GetCategoryListRequestHandler(
             IMapper mapper,
             ICategoryRepository categoryRepository)
         {
@@ -28,7 +28,7 @@ namespace Application.Categories.Queries.GetCategories
         }
 
         /// <inheritdoc />
-        public async Task<GetCategoriesResponse> Handle(GetCategoriesRequest request, CancellationToken cancellationToken)
+        public async Task<GetCategoryListResponse> Handle(GetCategoryListRequest request, CancellationToken cancellationToken)
         {
             var expr = PredicateBuilder.True<Category>();
 
@@ -39,7 +39,7 @@ namespace Application.Categories.Queries.GetCategories
 
             var categoryList = await _categoryRepository.FindAsync(expr, cancellationToken);
 
-            return new GetCategoriesResponse
+            return new GetCategoryListResponse
             {
                 Result = _mapper.Map<CategoryDto[]>(categoryList)
             };
