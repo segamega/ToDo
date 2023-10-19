@@ -1,4 +1,4 @@
-﻿using Application.Categories.Queries.GetCategoryList;
+﻿using Application.Categories.Queries;
 using AutoMapper;
 using Domain.Entities;
 
@@ -14,11 +14,11 @@ namespace Application.Categories.Mappings
         /// </summary>
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDto>()
+            _ = CreateMap<Category, CategoryDto>()
                 .ForMember(x => x.ParentCategoryName, opt =>
                 {
                     opt.PreCondition(t => t.ParentCategory != null);
-                    opt.MapFrom(t => t.ParentCategory!.Name);
+                    opt.MapFrom(mapExpression: t => t.ParentCategory!.Name);
                 });
         }
     }
