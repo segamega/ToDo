@@ -1,7 +1,8 @@
+using MediatR;
 
-namespace Application.Categories.Queries.GettingCategoryById;
+namespace Application.Categories.Queries.GetCategoryById;
 
-public class GetCategoryByIdRequest
+public class GetCategoryByIdRequest : IRequest<GetCategoryByIdResponse>
 {
     public int Id { get; set; }
 }

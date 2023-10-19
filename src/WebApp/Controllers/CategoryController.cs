@@ -4,6 +4,7 @@ using Application.Categories.Queries.GetCategoryList;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Threading;
+using Application.Categories.Queries.GetCategoryById;
 
 namespace WebApp.Controllers
 {
@@ -38,6 +39,25 @@ namespace WebApp.Controllers
             var response = await _mediator.Send(request, cancellationToken);
 
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Получение категории по идентификатору.
+        /// </summary>
+        /// <param name="id">Идентификатор.</param>
+        /// <returns>Категория.</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoryById(int id)
+        {
+            var request = new GetCategoryByIdRequest { Id = id };
+            var category = await _mediator.Send(request);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(category);
         }
     }
 }
