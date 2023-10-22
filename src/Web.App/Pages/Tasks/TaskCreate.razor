@@ -1,0 +1,57 @@
+﻿@page "/tasks/taskcreate"
+@using Web.App.Models.Dto;
+
+<PageTitle>Create a New Task</PageTitle>
+<h1>Create a New Task</h1>
+
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="title">
+                <span class="oi oi-book" aria-hidden="true"></span> Title:
+            </label>
+            <input type="text" id="title" class="form-control" @bind="task.Title" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">
+                <span class="oi oi-document" aria-hidden="true"></span> Description:
+            </label>
+            <textarea id="description" class="form-control" @bind="task.Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">
+                <span class="oi oi-calendar" aria-hidden="true"></span> Due Date:
+            </label>
+            <input type="date" id="dueDate" class="form-control" @bind="task.DueDate" />
+        </div>
+
+        <div class="form-group">
+            <label for="priority">
+                <span class="oi oi-star" aria-hidden="true"></span> Priority:
+            </label>
+            <select id="priority" class="form-control" @bind="task.PriorityType">
+                <option value=2>High</option>
+                <option value=1>Medium</option>
+                <option value=0>Low</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" @onclick="CreateTask">
+            <span class="oi oi-task" aria-hidden="true"></span> Create Task
+        </button>
+    </div>
+</div>
+
+@code {
+    private TaskDto task = new TaskDto();
+
+    private void CreateTask()
+    {
+        // Здесь вы можете добавить логику для сохранения задачи в базе данных
+        // после того, как пользователь заполнит форму и нажмет "Create Task".
+    }
+}
+
