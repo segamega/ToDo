@@ -2,19 +2,18 @@
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Tasks.Mappings
+namespace Application.Tasks.Mappings;
+
+/// <summary>
+/// Профиль маппинга для <see cref="Task"/>.
+/// </summary>
+public class TaskProfile : Profile
 {
     /// <summary>
-    /// Профиль маппинга для <see cref="Task"/>.
+    /// Инициализирует новый экземпляр класса <see cref="TaskProfile"/>.
     /// </summary>
-    public class TaskProfile : Profile
+    public TaskProfile()
     {
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="TaskProfile"/>.
-        /// </summary>
-        public TaskProfile()
-        {
-            CreateMap<Task, TaskDto>();
-        }
+        CreateMap<Task, TaskDto>();
     }
 }

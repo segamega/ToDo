@@ -11,42 +11,42 @@
             <label for="title">
                 <span class="oi oi-book" aria-hidden="true"></span> Title:
             </label>
-            <input type="text" id="title" class="form-control" @bind="task.Title" />
+            <input type="text" id="title" class="form-control" @bind="_task.Title" />
         </div>
 
         <div class="form-group">
             <label for="description">
                 <span class="oi oi-document" aria-hidden="true"></span> Description:
             </label>
-            <textarea id="description" class="form-control" @bind="task.Description"></textarea>
+            <textarea id="description" class="form-control" @bind="_task.Description"></textarea>
         </div>
 
         <div class="form-group">
             <label for="dueDate">
                 <span class="oi oi-calendar" aria-hidden="true"></span> Due Date:
             </label>
-            <input type="date" id="dueDate" class="form-control" @bind="task.DueDate" />
+            <input type="date" id="dueDate" class="form-control" @bind="_task.DueDate" />
         </div>
 
         <div class="form-group">
             <label for="priority">
                 <span class="oi oi-star" aria-hidden="true"></span> Priority:
             </label>
-            <select id="priority" class="form-control" @bind="task.PriorityType">
+            <select id="priority" class="form-control" @bind="_task.PriorityType">
                 <option value=2>High</option>
                 <option value=1>Medium</option>
                 <option value=0>Low</option>
             </select>
         </div>
 
-        <button class="btn btn-primary" @onclick="CreateTask">
+        <button class="btn btn-primary" style="margin-top: 0.5rem" @onclick="CreateTask">
             <span class="oi oi-task" aria-hidden="true"></span> Create Task
         </button>
     </div>
 </div>
 
 @code {
-    private TaskDto task = new TaskDto();
+    private TaskDto _task = new TaskDto();
 
     private void CreateTask()
     {
