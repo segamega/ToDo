@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using Application.Categories.Queries.GetCategoryList;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Threading;
-using Application.Categories.Queries.GetCategoryById;
+using Application.Categories.Commands.CreateCategory;
+using Application.Categories.Queries.GetCategoryList;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Controllers
+namespace Web.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -42,22 +42,13 @@ namespace WebApp.Controllers
         }
 
         /// <summary>
-        /// Получение категории по идентификатору.
+        /// Добавление категории.
         /// </summary>
-        /// <param name="id">Идентификатор.</param>
-        /// <returns>Категория.</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategoryById(int id)
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CreateCategoryRequest request)
         {
-            var request = new GetCategoryByIdRequest { Id = id };
-            var category = await _mediator.Send(request);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(category);
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

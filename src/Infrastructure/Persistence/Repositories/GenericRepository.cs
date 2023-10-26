@@ -11,16 +11,18 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly ApplicationContext _context;
+        private readonly ApplicationContext _context;
 
         public GenericRepository(ApplicationContext context)
         {
             _context = context;
         }
 
-        public void Add(T entity)
+        public int Add(T entity)
         {
             _context.Set<T>().Add(entity);
+            _context.SaveChangesAsync();
+            return entity.GetType().GetProperty("Id")?.GetValue(entity, null) as int? ?? 0;
         }
 
         public void AddRange(IEnumerable<T> entities)

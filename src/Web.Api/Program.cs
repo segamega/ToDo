@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Web.Api.Bootstrap;
 
-namespace WebApp
+namespace Web.Api
 {
     public class Program
     {
@@ -16,9 +16,9 @@ namespace WebApp
             // Add services to the container.
             builder.Services.UseServices();
 
-            //POSTGRES
-            var connection = builder.Configuration["ConnectionStrings:NPGConnection"];
-            builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connection));
+            //SQLite
+            var connection = builder.Configuration["ConnectionStrings:SQLiteConnection"];
+            builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
 
             var app = builder.Build();
 

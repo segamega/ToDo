@@ -14,6 +14,11 @@ public class ProjectProfile : Profile
     /// </summary>
     public ProjectProfile()
     {
-        CreateMap<Project, ProjectDto>();
+        CreateMap<Project, ProjectDto>()
+            .ForMember(x => x.CategoryName, opt =>
+            {
+                opt.PreCondition(t => t.Category != null);
+                opt.MapFrom(mapExpression: t => t.Category!.Name);
+            });
     }
 }

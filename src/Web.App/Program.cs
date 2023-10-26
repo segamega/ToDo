@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Persistence;
 using Web.App.Data;
 
 namespace Web.App;
@@ -12,6 +14,10 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
         builder.Services.AddSingleton<WeatherForecastService>();
+
+        //SQLite
+        var connection = builder.Configuration["ConnectionStrings:SQLiteConnection"];
+        builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
 
         var app = builder.Build();
 
