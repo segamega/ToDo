@@ -15,7 +15,12 @@ namespace Web.App.Models.Dto
         /// <summary>
         /// Идентификатор проекта.
         /// </summary>
-        public int ProjectName { get; set; }
+        public int ProjectId { get; set; }
+        
+        /// <summary>
+        /// Наименование проекта.
+        /// </summary>
+        public string ProjectName { get; set; }
 
         /// <summary>
         /// Заголовок.

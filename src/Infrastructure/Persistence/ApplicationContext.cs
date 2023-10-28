@@ -23,7 +23,7 @@ namespace Infrastructure.Persistence
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=E:\\Projects\\Pets\\ToDo\\src\\Web.App\\todo.db");
+            optionsBuilder.UseSqlite(@"Data Source=E:\Projects\Pets\ToDo\src\Web.App\todo.db");
         }
 
         /// <summary>
